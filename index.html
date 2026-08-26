@@ -990,34 +990,7 @@ a{text-decoration:none;color:inherit}
       <div>
         <h4>Explore</h4>
         <a href="#about">Approach</a>
-        <a href="#service
-984
-985
-986
-987
-988
-989
-990
-991
-992
-993
-994
-995
-996
-997
-998
-999
-1000
-1001
-1002
-1003
-1004
-1005
-1006
-1007
-1008
-1009
-s">Services</a>
+        <a href="#services">Services</a>
         <a href="#methodology">How We Work</a>
         <a href="#findings">Findings</a>
       </div>
@@ -1029,7 +1002,7 @@ s">Services</a>
       <div>
         <h4>Contact</h4>
         <a href="mailto:info@veristra.in">info@veristra.in</a>
-        <a href="#">LinkedIn</a>
+        <a href="https://www.linkedin.com/company/veristra-asset-intelligence/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
     <div class="legal">
@@ -1056,12 +1029,9 @@ function isMobile() { return window.innerWidth < 900; }
 function applyScenePosition() {
   if (!scene) return;
   if (isMobile()) {
-    // Center the network and push it down toward the hero-art area
     scene.position.x = 0;
     scene.position.y = -1.6;
   } else {
-    // Desktop: shift right toward the hero-art column, since the canvas
-    // now spans the full hero background
     scene.position.x = 1.2;
     scene.position.y = 0;
   }
@@ -1081,14 +1051,12 @@ function init() {
   const h = canvas.clientHeight || window.innerHeight;
 
   camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100);
-  // Closer camera on mobile so the network fills more of the view
   camera.position.z = isMobile() ? 7.5 : 9;
 
   renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(w, h);
 
-  // Central "subject" node
   central = new THREE.Mesh(
     new THREE.SphereGeometry(0.22, 32, 32),
     new THREE.MeshBasicMaterial({ color: 0xe8c378 })
@@ -1107,7 +1075,6 @@ function init() {
   );
   scene.add(glow2);
 
-  // Orbital node rings
   nodeGroup = new THREE.Group();
   scene.add(nodeGroup);
 
@@ -1151,7 +1118,6 @@ function init() {
     nodeGroup.add(ringGroup);
   });
 
-  // Inter-node cross connections
   const interMat = new THREE.LineBasicMaterial({ color: 0xd9ae65, transparent: true, opacity: 0.1 });
   for (let i = 0; i < 12; i++) {
     const r1 = 2.4 + Math.random() * 1.2;
@@ -1162,7 +1128,6 @@ function init() {
     nodeGroup.add(new THREE.Line(lg, interMat));
   }
 
-  // Particle field
   const pCount = 280;
   const pg = new THREE.BufferGeometry();
   const pos = new Float32Array(pCount * 3);
@@ -1204,13 +1169,11 @@ function animate() {
   renderer.render(scene, camera);
 }
 
-// Mouse parallax (desktop)
 window.addEventListener('mousemove', e => {
   mouseX = (e.clientX / window.innerWidth - 0.5);
   mouseY = (e.clientY / window.innerHeight - 0.5);
 });
 
-// Touch parallax (mobile) — finger drag moves the 3D network
 window.addEventListener('touchmove', e => {
   if (e.touches.length > 0) {
     mouseX = (e.touches[0].clientX / window.innerWidth - 0.5);
@@ -1218,7 +1181,6 @@ window.addEventListener('touchmove', e => {
   }
 }, { passive: true });
 
-// Resize: re-check mobile and update scene + camera
 window.addEventListener('resize', () => {
   if (!camera || !renderer) return;
   const w = canvas.clientWidth, h = canvas.clientHeight;
@@ -1231,7 +1193,6 @@ window.addEventListener('resize', () => {
 
 try { init(); } catch (e) { if (canvas) canvas.style.display = 'none'; }
 
-// Re-sync canvas size once fonts/images finish loading (layout can shift after first paint)
 window.addEventListener('load', () => {
   if (!camera || !renderer || !canvas) return;
   const w = canvas.clientWidth, h = canvas.clientHeight;
@@ -1243,7 +1204,6 @@ window.addEventListener('load', () => {
   }
 });
 
-// Scroll reveal
 const reveals = document.querySelectorAll('.section, .service, .principle, .finding, .coverage-item, .step, .source-stack-item, .pillar, .about-visual, .coverage-visual');
 const io = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -1255,7 +1215,6 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 reveals.forEach(el => { el.classList.add('reveal'); io.observe(el); });
 
-// 3D tilt on service cards
 document.querySelectorAll('.service').forEach(card => {
   card.addEventListener('mousemove', e => {
     const r = card.getBoundingClientRect();
@@ -1269,9 +1228,6 @@ document.querySelectorAll('.service').forEach(card => {
 </script>
 
 <script>
-// In-page view router — Privacy Policy / Terms of Use live inside this same
-// file as hidden sections, so they always work even if this HTML is the only
-// file present (no dependency on separate privacy-policy.html / terms-of-use.html files).
 (function () {
   function showView(id) {
     document.querySelectorAll('.site-view').forEach(v => {
@@ -1304,12 +1260,9 @@ document.querySelectorAll('.service').forEach(card => {
 
   window.addEventListener('popstate', () => goTo(location.hash.replace('#', ''), false));
 
-  // Support direct deep-links like index.html#privacy-policy on first load
   goTo(location.hash.replace('#', ''), false);
 })();
 
-// Mobile nav toggle — deliberately outside the module script above so it
-// keeps working even if the Three.js CDN import fails or is blocked.
 (function () {
   const navToggle = document.getElementById('nav-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
