@@ -42,7 +42,7 @@ a{text-decoration:none;color:inherit}
 .links a:not(.btn)::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
 .links a:not(.btn):hover{color:var(--gold)}
 .links a:not(.btn):hover::after{width:100%}
-.btn{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;padding:13px 22px;font-size:12px;font-weight:600;letter-spacing:.04em;transition:all .35s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;padding:13px 22px;font-size:12px;font-weight:600;letter-spacing:.04em;transition:all .35s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;border:none;cursor:pointer}
 .btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--gold),var(--gold-light));transform:translateY(101%);transition:transform .4s cubic-bezier(.4,0,.2,1)}
 .btn span{position:relative;z-index:1}
 .btn:hover::before{transform:translateY(0)}
@@ -239,7 +239,7 @@ a{text-decoration:none;color:inherit}
 .cta-copy .eyebrow{justify-content:flex-start}
 .cta-direct{margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.15);font-size:13px;color:#a8b5c4;display:flex;flex-direction:column;gap:6px}
 .cta-direct-link{color:var(--gold-light);font-weight:600;font-size:15px}
-.contact-form{background:rgba(255,255,255,.05);border:1px solid rgba(217,174,101,.25);backdrop-filter:blur(14px);padding:32px;text-align:left}
+.contact-form{background:rgba(255,255,255,.05);border:1px solid rgba(217,174,101,.25);backdrop-filter:blur(14px);padding:32px;text-align:left;position:relative}
 .form-head{margin-bottom:18px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .form-group{margin-bottom:14px}
@@ -254,7 +254,72 @@ a{text-decoration:none;color:inherit}
 .form-note a{color:var(--gold-light)}
 @media(max-width:900px){.cta-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}}
 
-/* Footer — no brand-mark, just wordmark */
+/* Thank You Card */
+.thankyou-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(217, 174, 101, 0.35);
+  backdrop-filter: blur(14px);
+  padding: 48px 36px;
+  text-align: center;
+  box-shadow: 0 20px 45px rgba(5, 15, 31, 0.5);
+  border-radius: 2px;
+  animation: fadeIn 0.5s ease-out;
+}
+.thankyou-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 24px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--navy-deep);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(193, 154, 74, 0.3);
+}
+.thankyou-icon svg {
+  width: 32px;
+  height: 32px;
+  stroke: var(--navy-deep);
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.thankyou-card h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 500;
+  color: #fff;
+  margin: 0 0 12px;
+  letter-spacing: -0.02em;
+}
+.thankyou-card p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #a8b5c4;
+  margin: 0 0 8px;
+}
+.thankyou-small {
+  font-size: 13px !important;
+  color: var(--gold-light) !important;
+  margin-top: 14px !important;
+}
+.thankyou-reset {
+  margin-top: 24px;
+  display: inline-block;
+  font-size: 12px;
+  color: #a8b5c4;
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: inherit;
+}
+.thankyou-reset:hover { color: #fff; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Footer */
 .footer{background:var(--navy-deep);color:#8a99ad;padding:64px 0 24px}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
 .footer-brand-name{font-family:'Fraunces',serif;font-size:26px;letter-spacing:-.02em;font-weight:600;color:#fff;display:inline-block;margin-bottom:14px}
@@ -294,7 +359,7 @@ a{text-decoration:none;color:inherit}
   .report-stack{transform:rotateY(0) rotateX(0)}
   .legal{flex-direction:column}
 }
-/* ===== Legal page content ===== */
+/* Legal page content */
 .legal-hero{background:var(--navy);color:#fff;padding:64px 0 40px}
 .legal-hero .eyebrow{color:var(--gold-light);justify-content:flex-start}
 .legal-hero .eyebrow::before{background:var(--gold-light)}
@@ -314,11 +379,9 @@ a{text-decoration:none;color:inherit}
 .legal-contact p:last-child{margin-bottom:0}
 .legal-note{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);line-height:1.7}
 
-
 .site-view{}
 .legal-back{display:inline-flex;align-items:center;gap:8px;color:var(--gold-light);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:18px;cursor:pointer}
 .legal-back:hover{color:#fff}
-
 </style>
 </head>
 <body>
@@ -409,7 +472,6 @@ a{text-decoration:none;color:inherit}
               <circle cx="272" cy="214" r="72" fill="none"/>
             </g>
 
-            <!-- Layered record stack -->
             <g transform="rotate(-6 190 158)"><rect x="82" y="40" width="216" height="272" rx="4" fill="#0e213c" opacity=".3"/></g>
             <g transform="rotate(3 190 158)"><rect x="76" y="34" width="216" height="272" rx="4" fill="#13294d" opacity=".5"/></g>
             <rect x="80" y="28" width="220" height="278" rx="4" fill="#faf8f3"/>
@@ -428,10 +490,8 @@ a{text-decoration:none;color:inherit}
             <rect x="104" y="238" width="156" height="4" rx="2" fill="#edf2f4"/>
             <rect x="104" y="250" width="130" height="4" rx="2" fill="#edf2f4"/>
 
-            <!-- corner fold -->
             <path d="M280 28 v34 h20 z" fill="#e7e2d6"/>
 
-            <!-- small record-network nodes, echoing the pin markers used elsewhere -->
             <g stroke="#d9ae65" stroke-width="1" opacity=".55">
               <line x1="300" y1="90" x2="336" y2="66"/>
               <line x1="300" y1="90" x2="344" y2="104"/>
@@ -439,7 +499,6 @@ a{text-decoration:none;color:inherit}
             <circle cx="336" cy="66" r="4" fill="#0e213c" stroke="#c19a4a" stroke-width="1.5"/>
             <circle cx="344" cy="104" r="3" fill="#c19a4a"/>
 
-            <!-- magnifying glass verifying a finding -->
             <g clip-path="url(#lensClip)">
               <rect x="238" y="182" width="68" height="64" fill="#0c2544"/>
               <rect x="242" y="196" width="52" height="4" rx="2" fill="#3a557a"/>
@@ -603,7 +662,6 @@ a{text-decoration:none;color:inherit}
         <div class="finding">
           <div class="finding-num">07</div>
           <div class="finding-label">Immovable assets identified across three states</div>
-          
         </div>
         <div class="finding">
           <div class="finding-num">02</div>
@@ -797,100 +855,72 @@ a{text-decoration:none;color:inherit}
           <a class="cta-direct-link" href="mailto:info@veristra.in">info@veristra.in →</a>
         </div>
       </div>
-  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-      <form class="contact-form" id="veristra-contact-form" action="https://script.google.com/macros/s/AKfycbz3ZcPjcvt5C1v348Kgh359A6r0TCcPuvsy36_3j0587FPTqLREtewGuSqDaZgSz2IQ/exec" method="POST" target="hidden_iframe" >
-         
-        <div class="form-head">
-          <span class="eyebrow" style="color:var(--gold-light)">Request a Service</span>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="cf-name">Full name</label>
-            <input id="cf-name" name="name" type="text" required placeholder="Your name">
+      
+      <!-- Contact Form Container -->
+      <div id="form-container">
+        <form class="contact-form" id="veristra-contact-form" action="https://script.google.com/macros/s/AKfycbz3ZcPjcvt5C1v348Kgh359A6r0TCcPuvsy36_3j0587FPTqLREtewGuSqDaZgSz2IQ/exec" method="POST">
+          <div class="form-head">
+            <span class="eyebrow" style="color:var(--gold-light)">Request a Service</span>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-name">Full name</label>
+              <input id="cf-name" name="name" type="text" required placeholder="Your name">
+            </div>
+            <div class="form-group">
+              <label for="cf-org">Organisation</label>
+              <input id="cf-org" name="organisation" type="text" placeholder="Firm / institution">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-email">Email</label>
+              <input id="cf-email" name="email" type="email" required placeholder="you@company.com">
+            </div>
+            <div class="form-group">
+              <label for="cf-phone">Phone</label>
+              <input id="cf-phone" name="phone" type="tel" placeholder="+91">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-service">Engagement type</label>
+              <select id="cf-service" name="engagement_type">
+                <option value="Individual Asset Tracing">Individual Asset Tracing</option>
+                <option value="Company Asset Tracing">Company Asset Tracing</option>
+                <option value="Not sure yet">Not sure yet</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="cf-date">Preferred Service date</label>
+              <input id="cf-date" name="preferred_date" type="date">
+            </div>
           </div>
           <div class="form-group">
-            <label for="cf-org">Organisation</label>
-            <input id="cf-org" name="organisation" type="text" placeholder="Firm / institution">
+            <label for="cf-message">Brief requirement</label>
+            <textarea id="cf-message" name="message" rows="3" placeholder="A line or two on what you're trying to establish"></textarea>
           </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="cf-email">Email</label>
-            <input id="cf-email" name="email" type="email" required placeholder="you@company.com">
-          </div>
-          <div class="form-group">
-            <label for="cf-phone">Phone</label>
-            <input id="cf-phone" name="phone" type="tel" placeholder="+91">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="cf-service">Engagement type</label>
-            <select id="cf-service" name="engagement_type">
-              <option value="Individual Asset Tracing">Individual Asset Tracing</option>
-              <option value="Company Asset Tracing">Company Asset Tracing</option>
-              <option value="Not sure yet">Not sure yet</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="cf-date">Preferred Service date</label>
-            <input id="cf-date" name="preferred_date" type="date">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="cf-message">Brief requirement</label>
-          <textarea id="cf-message" name="message" rows="3" placeholder="A line or two on what you're trying to establish"></textarea>
-        </div>
-        <input type="hidden" name="_subject" value="New Service request — Veristra website">
-        <button type="submit" class="btn btn-light" style="width:100%;justify-content:center"><span>Request Service →</span></button>
-        <p class="form-note">Submitting this form sends your details straight to our inbox. You can also email us directly at <a href="mailto:info@veristra.in">info@veristra.in</a>.</p>
-      </form>
-      <!-- ===== Thank You Message ===== -->
-<div id="thank-you" style="display:none;">
-  <div class="thankyou-card">
-    <div class="thankyou-icon">✓</div>
-    <h3>Thank You!</h3>
-    <p>Your enquiry has been received successfully.</p>
-    <p class="thankyou-small">Our team will get back to you within 24–48 hours.</p>
-  </div>
-</div>
+          <input type="hidden" name="_subject" value="New Service request — Veristra website">
+          <button type="submit" id="submit-btn" class="btn btn-light" style="width:100%;justify-content:center">
+            <span>Request Service →</span>
+          </button>
+          <p class="form-note">Submitting this form sends your details straight to our inbox. You can also email us directly at <a href="mailto:info@veristra.in">info@veristra.in</a>.</p>
+        </form>
 
-<style>
-.thankyou-card {
-  max-width: 440px;
-  margin: 50px auto;
-  padding: 45px 30px;
-  text-align: center;
-  background: #f9fbf9;
-  border: 1px solid #dfe8e1;
-  border-radius: 14px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
-}
-.thankyou-icon {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto 22px;
-  background: #2e7d32;
-  color: #ffffff;
-  border-radius: 50%;
-  font-size: 32px;
-  line-height: 64px;
-}
-.thankyou-card h3 {
-  margin: 0 0 12px;
-  font-size: 24px;
-  color: #1a1a1a;
-}
-.thankyou-card p {
-  margin: 0 0 8px;
-  font-size: 16px;
-  color: #444;
-}
-.thankyou-small {
-  font-size: 14px !important;
-  color: #777 !important;
-}
-</style>
+        <!-- ===== Premium Thank You View ===== -->
+        <div id="thank-you" style="display:none;">
+          <div class="thankyou-card">
+            <div class="thankyou-icon">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <h3>Thank You!</h3>
+            <p>Your enquiry has been received securely.</p>
+            <p class="thankyou-small">Our team will review your requirement and respond within 24–48 hours.</p>
+            <button type="button" class="thankyou-reset" id="reset-form-btn">Submit another enquiry</button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -996,7 +1026,7 @@ a{text-decoration:none;color:inherit}
       <p>We take reasonable care in conducting each search, but official and public record databases can be incomplete, delayed, or contain errors outside our control. Veristra does not guarantee that a report is exhaustive or free of such underlying inaccuracies, and makes no warranty beyond the evidentiary standard disclosed for each finding (confirmed or indicative).</p>
 
       <h2>8. Third-Party Links</h2>
-      <p>This website may link to third-party websites for convenience or reference. We do not control and are not responsible for the content, accuracy or privacy practices of any linked site.</p>
+      <p>This website may link to third-party practical references. We do not control and are not responsible for the content, accuracy or privacy practices of any linked site.</p>
 
       <h2>9. Limitation of Liability</h2>
       <p>To the maximum extent permitted by law, Veristra and its personnel shall not be liable for any indirect, incidental or consequential loss arising from use of this website or reliance on its content. Liability in connection with any specific engagement is governed solely by the terms of the written confirmation for that engagement.</p>
@@ -1025,7 +1055,6 @@ a{text-decoration:none;color:inherit}
     </div>
   </section>
 </div>
-
 
 <footer class="footer">
   <div class="wrap">
@@ -1326,26 +1355,57 @@ document.querySelectorAll('.service').forEach(card => {
   }));
 })();
 </script>
-  <script>
-let formSubmitted = false;
 
-// Jab Google Script ka response iframe mein aaye → thank-you dikhao
-document.getElementById('hidden_iframe').addEventListener('load', function () {
-  if (formSubmitted) {
-    document.getElementById('veristra-contact-form').style.display = 'none';
-    const ty = document.getElementById('thank-you');
-    ty.style.display = 'block';
-    ty.scrollIntoView({ behavior: 'smooth' });
-  }
-});
+<!-- ===== ROBUST ASYNC FORM SUBMISSION SCRIPT ===== -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('veristra-contact-form');
+  const thankYou = document.getElementById('thank-you');
+  const submitBtn = document.getElementById('submit-btn');
+  const resetBtn = document.getElementById('reset-form-btn');
 
-// Submit par button disable + loading text
-document.getElementById('veristra-contact-form').addEventListener('submit', function () {
-  formSubmitted = true;
-  const btn = this.querySelector('button[type="submit"], input[type="submit"]');
-  if (btn) {
-    btn.disabled = true;
-    btn.textContent = 'Submitting...';
+  if (!form) return;
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    // 1. Loading UI State
+    submitBtn.disabled = true;
+    const originalBtnHTML = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<span>Submitting enquiry...</span>';
+
+    const formData = new FormData(form);
+
+    try {
+      // 2. Direct POST to Google Script via fetch
+      await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors' // Allows cross-origin Google App Script triggers
+      });
+
+      // 3. Show Premium Thank You Card
+      form.style.display = 'none';
+      thankYou.style.display = 'block';
+      thankYou.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      form.reset();
+
+    } catch (err) {
+      console.error('Submission failed:', err);
+      alert('There was an issue submitting your form. Please email us directly at info@veristra.in.');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnHTML;
+    }
+  });
+
+  // Optional: Allow user to submit another form
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      thankYou.style.display = 'none';
+      form.style.display = 'block';
+      form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
   }
 });
 </script>
