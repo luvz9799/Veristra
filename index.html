@@ -797,8 +797,9 @@ a{text-decoration:none;color:inherit}
           <a class="cta-direct-link" href="mailto:info@veristra.in">info@veristra.in →</a>
         </div>
       </div>
-
-      <form class="contact-form" id="veristra-contact-form" action="https://script.google.com/macros/s/AKfycbz3ZcPjcvt5C1v348Kgh359A6r0TCcPuvsy36_3j0587FPTqLREtewGuSqDaZgSz2IQ/exec" method="POST">
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+      <form class="contact-form" id="veristra-contact-form" action="https://script.google.com/macros/s/AKfycbz3ZcPjcvt5C1v348Kgh359A6r0TCcPuvsy36_3j0587FPTqLREtewGuSqDaZgSz2IQ/exec" method="POST" target="hidden_iframe" >
+         
         <div class="form-head">
           <span class="eyebrow" style="color:var(--gold-light)">Request a Service</span>
         </div>
@@ -844,6 +845,52 @@ a{text-decoration:none;color:inherit}
         <button type="submit" class="btn btn-light" style="width:100%;justify-content:center"><span>Request Service →</span></button>
         <p class="form-note">Submitting this form sends your details straight to our inbox. You can also email us directly at <a href="mailto:info@veristra.in">info@veristra.in</a>.</p>
       </form>
+      <!-- ===== Thank You Message ===== -->
+<div id="thank-you" style="display:none;">
+  <div class="thankyou-card">
+    <div class="thankyou-icon">✓</div>
+    <h3>Thank You!</h3>
+    <p>Your enquiry has been received successfully.</p>
+    <p class="thankyou-small">Our team will get back to you within 24–48 hours.</p>
+  </div>
+</div>
+
+<style>
+.thankyou-card {
+  max-width: 440px;
+  margin: 50px auto;
+  padding: 45px 30px;
+  text-align: center;
+  background: #f9fbf9;
+  border: 1px solid #dfe8e1;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
+}
+.thankyou-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 22px;
+  background: #2e7d32;
+  color: #ffffff;
+  border-radius: 50%;
+  font-size: 32px;
+  line-height: 64px;
+}
+.thankyou-card h3 {
+  margin: 0 0 12px;
+  font-size: 24px;
+  color: #1a1a1a;
+}
+.thankyou-card p {
+  margin: 0 0 8px;
+  font-size: 16px;
+  color: #444;
+}
+.thankyou-small {
+  font-size: 14px !important;
+  color: #777 !important;
+}
+</style>
     </div>
   </section>
 
@@ -1278,6 +1325,29 @@ document.querySelectorAll('.service').forEach(card => {
     navToggle.setAttribute('aria-expanded', 'false');
   }));
 })();
+</script>
+  <script>
+let formSubmitted = false;
+
+// Jab Google Script ka response iframe mein aaye → thank-you dikhao
+document.getElementById('hidden_iframe').addEventListener('load', function () {
+  if (formSubmitted) {
+    document.getElementById('veristra-contact-form').style.display = 'none';
+    const ty = document.getElementById('thank-you');
+    ty.style.display = 'block';
+    ty.scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+// Submit par button disable + loading text
+document.getElementById('veristra-contact-form').addEventListener('submit', function () {
+  formSubmitted = true;
+  const btn = this.querySelector('button[type="submit"], input[type="submit"]');
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+  }
+});
 </script>
 </body>
 </html>
